@@ -3,19 +3,14 @@ import 'package:path/path.dart' as path;
 
 final _sourcePath = path.join('src');
 final _targetPath = path.join('brick', '__brick__');
-final _androidPath = path.join(_targetPath, 'my_app', 'android');
+final _androidPath = path.join(_targetPath, 'flavor_core', 'android');
 final _androidKotlinPath =
     path.join(_androidPath, 'app', 'src', 'main', 'kotlin');
 final _orgPath = path.join(_androidKotlinPath, 'com');
 final _staticDir = path.join('tool', 'generator', 'static');
 
 final copyrightHeader = '''
-// Copyright (c) {{current_year}}, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
+// Copyright (c) {{current_year}}, Prixa Technologies
 ''';
 
 extension GeneratorStringX on String {
@@ -24,16 +19,16 @@ extension GeneratorStringX on String {
 
     if (isAndroid && filePath.endsWith('build.gradle')) {
       return replaceAll(
-        'com.example.veryGoodCore',
+        'com.example.flavorCore',
         '{{application_id_android}}',
       );
     } else if (isAndroid) {
       return replaceAll(
-        'com.example.veryGoodCore',
+        'com.example.flavorCore',
         '{{org_name.dotCase()}}.{{project_name.snakeCase()}}',
       );
     } else {
-      return replaceAll('com.example.veryGoodCore', '{{application_id}}');
+      return replaceAll('com.example.flavorCore', '{{application_id}}');
     }
   }
 }
@@ -53,7 +48,7 @@ void main() async {
 
   // Convert Values to Variables
   await Future.wait(
-    Directory(path.join(_targetPath, 'my_app'))
+    Directory(path.join(_targetPath, 'flavor_core'))
         .listSync(recursive: true)
         .whereType<File>()
         .map((_) async {
@@ -66,22 +61,16 @@ void main() async {
         }
 
         final contents = await file.readAsString();
-        file = await file.writeAsString(
-          contents
-              .replaceAll('very_good_core', '{{project_name.snakeCase()}}')
-              .replaceAll('very-good-core', '{{project_name.paramCase()}}')
-              .replaceAll('A new Flutter project.', '{{{description}}}')
-              .replaceAll('Very Good Core', '{{project_name.titleCase()}}')
-              .replaceApplicationId(file.path)
-              .replaceAll(
-                'Copyright (c) 2022 Very Good Ventures',
-                'Copyright (c) {{current_year}} Very Good Ventures',
-              ),
-        );
+        file = await file.writeAsString(contents
+            .replaceAll('flavor_core', '{{project_name.snakeCase()}}')
+            .replaceAll('flavor-core', '{{project_name.paramCase()}}')
+            .replaceAll('A new flavored flutter project.', '{{description}}')
+            .replaceAll('Flavor Core', '{{project_name.titleCase()}}')
+            .replaceApplicationId(file.path));
         final fileSegments = file.path.split('/').sublist(2);
-        if (fileSegments.contains('very_good_core')) {
+        if (fileSegments.contains('flavor_core')) {
           final newPathSegment = fileSegments.join('/').replaceAll(
-                'very_good_core',
+                'flavor_core',
                 '{{project_name.snakeCase()}}',
               );
           final newPath = path.join(_targetPath, newPathSegment);
@@ -95,7 +84,7 @@ void main() async {
 
   final mainActivityKt = File(
     path.join(
-      _androidKotlinPath.replaceAll('my_app', '{{project_name.snakeCase()}}'),
+      _androidKotlinPath,
       '{{org_name.pathCase()}}',
       'MainActivity.kt',
     ),
@@ -103,10 +92,10 @@ void main() async {
 
   await Shell.mkdir(mainActivityKt.parent.path);
   await Shell.cp(path.join(_staticDir, 'MainActivity.kt'), mainActivityKt.path);
-  await Shell.rename(
-    path.join(_targetPath, 'my_app'),
-    path.join(_targetPath, '{{project_name.snakeCase()}}'),
-  );
+  // await Shell.rename(
+  //   path.join(_targetPath, 'flavor_core'),
+  //   path.join(_targetPath, '{{project_name.snakeCase()}}'),
+  // );
 }
 
 class Shell {

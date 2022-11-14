@@ -1,14 +1,12 @@
-// Copyright (c) {{current_year}}, Prixa Technologies
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:{{project_name.snakeCase()}}/config/config.dart';
+import 'package:flavor_core/config/config.dart';
 
-import 'package:{{project_name.snakeCase()}}/app/routes/app_pages.dart';
+import 'package:flavor_core/app/routes/app_pages.dart';
 
 void main() async {
-  Config.currentFlavor = Flavor.production;
+  Config.currentFlavor = Flavor.staging;
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(

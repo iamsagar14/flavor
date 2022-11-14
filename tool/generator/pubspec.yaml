@@ -1,5 +1,5 @@
 name: generator
-description: A template generator for Very Good CLI.
+description: A flavored template generator.
 publish_to: none
 
 environment:

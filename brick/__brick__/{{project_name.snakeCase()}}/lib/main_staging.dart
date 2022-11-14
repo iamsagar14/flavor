@@ -1,13 +1,20 @@
-// Copyright (c) {{current_year}}, Very Good Ventures
-// https://verygood.ventures
-//
-// Use of this source code is governed by an MIT-style
-// license that can be found in the LICENSE file or at
-// https://opensource.org/licenses/MIT.
+// Copyright (c) {{current_year}}, Prixa Technologies
 
-import 'package:{{project_name.snakeCase()}}/app/app.dart';
-import 'package:{{project_name.snakeCase()}}/bootstrap.dart';
+import 'package:flutter/material.dart';
 
-void main() {
-  bootstrap(() => const App());
+import 'package:get/get.dart';
+import 'package:{{project_name.snakeCase()}}/config/config.dart';
+
+import 'package:{{project_name.snakeCase()}}/app/routes/app_pages.dart';
+
+void main() async {
+  Config.currentFlavor = Flavor.staging;
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    GetMaterialApp(
+      title: "Application",
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
+    ),
+  );
 }
