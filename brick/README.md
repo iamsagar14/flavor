@@ -18,37 +18,42 @@ Flavors for flutter starter project with required modifications by from [Very Go
 
 *2. Starter project with GetX architecture*
 
-This project contains 3 flavors:
+This project contains a brick generator for generating flavored flutter templates:
 
-- development
-- staging
-- production
-
-To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
+To run the generator either use the launch configuration in VSCode or use the following commands:
 
 ```sh
-# Development
-$ flutter run --flavor development --target lib/main_development.dart
+# Navigate to tool/generator
+$ cd tool/generator
 
-# Staging
-$ flutter run --flavor staging --target lib/main_staging.dart
+# Run pub get
+$ dart pub get
 
-# Production
-$ flutter run --flavor production --target lib/main_production.dart
+# Navigate back to root
+$ cd ..
+$ cd ..
+
+# Run generator
+$ dart run tool/generator/main.dart
 ```
 
 ---
 
-## Define flavor specific variables 🍭
-```dart
-String baseUrl get {
-    switch(appFlavor) {
-        case Flavor.development:
-            return "api.dev"
-        case Flavor.staging:
-            return "api.staging"
-        case Flavor.production:
-            return "api.production"
-    }
-}
+## Some notes
+While running the generator, somethings need to be corrected manually. To correct them follow:
+- MainActivity.kt might get generated in incorrect path. Move it to android/app/src/main/kotlin/{{org_name.pathCase()}} inside brick/\__brick\__.
+- Rename flavor_core inside brick/\__brick\__ as {{project_name.snakeCase()}}
+
+
+---
+## Use generated brick
+
+```sh
+# 🎯 Activate from https://pub.dev
+$ dart pub global activate mason_cli
+
+# Add brick from github url
+$ mason add flavor_core_brick --git-url https://github.com/pandey407/flavor --git-path brick/
+
 ```
+
