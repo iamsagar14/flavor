@@ -64,7 +64,7 @@ void main() async {
         file = await file.writeAsString(contents
             .replaceAll('flavor_core', '{{project_name.snakeCase()}}')
             .replaceAll('flavor-core', '{{project_name.paramCase()}}')
-            .replaceAll('A new flavored flutter project.', '{{description}}')
+            .replaceAll('A flavored flutter project.', '{{description}}')
             .replaceAll('Flavor Core', '{{project_name.titleCase()}}')
             .replaceApplicationId(file.path));
         final fileSegments = file.path.split('/').sublist(2);

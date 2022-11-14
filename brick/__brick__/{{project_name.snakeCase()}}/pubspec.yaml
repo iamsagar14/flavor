@@ -1,7 +1,7 @@
 name: {{project_name.snakeCase()}}
 version: 1.0.0+1
 publish_to: none
-description: A flavored flutter project.
+description: {{description}}
 environment:
   sdk: ">=2.18.0 <3.0.0"
   flutter: 3.3.7
