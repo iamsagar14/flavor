@@ -53,7 +53,7 @@ While running the generator, somethings need to be corrected manually. To correc
 $ dart pub global activate mason_cli
 
 # Add brick from github url
-$ mason add flavor_core_brick --git-url https://github.com/pandey407/flavor --git-path brick/
+$ mason add -g flavor_core_brick --git-url https://github.com/pandey407/flavor --git-path brick/
 
 ```
 
