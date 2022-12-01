@@ -1,12 +1,12 @@
 part 'flavor.dart';
 
 class Config {
+  Config._();
   static Flavor currentFlavor = Flavor.development;
   static String get description {
     return 'Currently configured in ${currentFlavor.name} flavor.';
   }
 
-  // TODO: Implementation required
   static String get baseUrl {
     switch (currentFlavor) {
       case Flavor.development:

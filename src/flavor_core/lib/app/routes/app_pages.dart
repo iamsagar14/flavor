@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import 'package:flavor_core/app/modules/home/bindings/home_binding.dart';
 import 'package:flavor_core/app/modules/home/views/home_view.dart';
 

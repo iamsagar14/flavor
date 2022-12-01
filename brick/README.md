@@ -1,22 +1,18 @@
 # Flavors in Flutter
 
+Originally developed by Very Good Ventures 🦄
 
-Originally developed by [Very Good Ventures][very_good_ventures_link] 🦄
+Flavors for flutter starter project with required modifications from Very Good Ventures Team.
 
-[![License: MIT][license_badge]][license_link]
-
-Flavors for flutter starter project with required modifications by from [Very Good Ventures Team][very_good_ventures_link].
-
-*This fork is not maintained by nor affiliated with "Very Good Ventures".*
+_This fork is not maintained by nor affiliated with "Very Good Ventures"._
 
 ---
 
 ## Getting Started 🚀
 
+_1. Supports iOS and Android_
 
-*1. Supports iOS and Android*
-
-*2. Starter project with GetX architecture*
+_2. Starter project with GetX architecture_
 
 This project contains a brick generator for generating flavored flutter templates:
 
@@ -40,12 +36,14 @@ $ dart run tool/generator/main.dart
 ---
 
 ## Some notes
-While running the generator, somethings need to be corrected manually. To correct them follow:
-- MainActivity.kt might get generated in incorrect path. Move it to android/app/src/main/kotlin/{{org_name.pathCase()}} inside brick/\__brick\__.
-- Rename flavor_core inside brick/\__brick\__ as {{project_name.snakeCase()}}
 
+While running the generator, somethings need to be corrected manually. To correct them follow:
+
+- MainActivity.kt might get generated in incorrect path. Move it to android/app/src/main/kotlin/{{org_name.pathCase()}} inside brick/\_\_brick\_\_.
+- Rename flavor_core inside brick/\_\_brick\_\_ as {{project_name.snakeCase()}}
 
 ---
+
 ## Use generated brick
 
 ```sh
@@ -53,7 +51,6 @@ While running the generator, somethings need to be corrected manually. To correc
 $ dart pub global activate mason_cli
 
 # Add brick from github url
-$ mason add flavor_core_brick --git-url https://github.com/pandey407/flavor --git-path brick/
+$ mason add -g flavor_core_brick --git-url https://github.com/pandey407/flavor --git-path brick/
 
 ```
-

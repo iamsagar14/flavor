@@ -9,10 +9,6 @@ final _androidKotlinPath =
 final _orgPath = path.join(_androidKotlinPath, 'com');
 final _staticDir = path.join('tool', 'generator', 'static');
 
-final copyrightHeader = '''
-// Copyright (c) {{current_year}}, Prixa Technologies
-''';
-
 extension GeneratorStringX on String {
   String replaceApplicationId(String filePath) {
     final isAndroid = path.isWithin(_androidPath, filePath);
@@ -55,11 +51,6 @@ void main() async {
       var file = _;
 
       try {
-        if (path.extension(file.path) == '.dart') {
-          final contents = await file.readAsString();
-          file = await file.writeAsString('$copyrightHeader\n$contents');
-        }
-
         final contents = await file.readAsString();
         file = await file.writeAsString(contents
             .replaceAll('flavor_core', '{{project_name.snakeCase()}}')
@@ -92,10 +83,10 @@ void main() async {
 
   await Shell.mkdir(mainActivityKt.parent.path);
   await Shell.cp(path.join(_staticDir, 'MainActivity.kt'), mainActivityKt.path);
-  // await Shell.rename(
-  //   path.join(_targetPath, 'flavor_core'),
-  //   path.join(_targetPath, '{{project_name.snakeCase()}}'),
-  // );
+  await Shell.rename(
+    path.join(_targetPath, 'flavor_core'),
+    path.join(_targetPath, '{{project_name.snakeCase()}}'),
+  );
 }
 
 class Shell {
