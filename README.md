@@ -35,15 +35,6 @@ $ dart run tool/generator/main.dart
 
 ---
 
-## Some notes
-
-While running the generator, somethings need to be corrected manually. To correct them follow:
-
-- MainActivity.kt might get generated in incorrect path. Move it to android/app/src/main/kotlin/{{org_name.pathCase()}} inside brick/\_\_brick\_\_.
-- Rename flavor_core inside brick/\_\_brick\_\_ as {{project_name.snakeCase()}}
-
----
-
 ## Use generated brick
 
 ```sh

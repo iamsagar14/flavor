@@ -3,7 +3,7 @@ import 'package:path/path.dart' as path;
 
 final _sourcePath = path.join('src');
 final _targetPath = path.join('brick', '__brick__');
-final _androidPath = path.join(_targetPath, 'flavor_core', 'android');
+final _androidPath = path.join(_targetPath, 'my_app', 'android');
 final _androidKotlinPath =
     path.join(_androidPath, 'app', 'src', 'main', 'kotlin');
 final _orgPath = path.join(_androidKotlinPath, 'com');
@@ -44,7 +44,7 @@ void main() async {
 
   // Convert Values to Variables
   await Future.wait(
-    Directory(path.join(_targetPath, 'flavor_core'))
+    Directory(path.join(_targetPath, 'my_app'))
         .listSync(recursive: true)
         .whereType<File>()
         .map((_) async {
@@ -75,7 +75,7 @@ void main() async {
 
   final mainActivityKt = File(
     path.join(
-      _androidKotlinPath,
+      _androidKotlinPath.replaceAll('my_app', '{{project_name.snakeCase()}}'),
       '{{org_name.pathCase()}}',
       'MainActivity.kt',
     ),
@@ -84,7 +84,7 @@ void main() async {
   await Shell.mkdir(mainActivityKt.parent.path);
   await Shell.cp(path.join(_staticDir, 'MainActivity.kt'), mainActivityKt.path);
   await Shell.rename(
-    path.join(_targetPath, 'flavor_core'),
+    path.join(_targetPath, 'my_app'),
     path.join(_targetPath, '{{project_name.snakeCase()}}'),
   );
 }
