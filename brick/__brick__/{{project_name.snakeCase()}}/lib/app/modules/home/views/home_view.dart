@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:{{project_name.snakeCase()}}/config/config.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -19,7 +18,7 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Center(
         child: Text(
-          '${Config.description}',
+          '${controller.config.description}',
           style: TextStyle(fontSize: 16),
         ),
       ),

@@ -1,8 +1,12 @@
 // 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
+import 'package:{{project_name.snakeCase()}}/config/config.dart';
+import 'package:{{project_name.snakeCase()}}/services/locator.dart';
+
 class HomeController extends GetxController {
-  final count = 0.obs;
+  final Config config = locator.get<Config>();
   @override
   void onInit() {
     super.onInit();
@@ -17,6 +21,4 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

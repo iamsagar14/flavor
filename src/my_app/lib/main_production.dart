@@ -13,7 +13,7 @@ import 'package:flavor_core/services/locator.dart' as di;
 void main() async {
   await GetStorage.init('flavor_core');
   di.initLocator();
-  Config.currentFlavor = Flavor.production;
+  di.locator.get<Config>().currentFlavor = Flavor.production;
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(

@@ -13,7 +13,7 @@ import 'package:{{project_name.snakeCase()}}/services/locator.dart' as di;
 void main() async {
   await GetStorage.init('{{project_name.snakeCase()}}');
   di.initLocator();
-  Config.currentFlavor = Flavor.development;
+  di.locator.get<Config>().currentFlavor = Flavor.development;
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
