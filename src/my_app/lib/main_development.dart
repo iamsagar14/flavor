@@ -17,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "[DEV] Flavor Core",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),

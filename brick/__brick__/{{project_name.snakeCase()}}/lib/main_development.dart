@@ -17,7 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "[DEV] {{project_name.titleCase()}}",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     ),
