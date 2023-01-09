@@ -15,7 +15,7 @@ vars:
     type: string
     description: The organization name
     default: com.example
-    prompt: What is the organization name?
+    prompt: What is the organization name (Reverse Domain)?
   application_id:
     type: string
     description: The application id on Android, Bundle ID on iOS and company name on Windows. If omitted value will be formed by org_name + . + project_name.

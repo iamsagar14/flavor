@@ -11,7 +11,7 @@ import 'package:flavor_core/services/api/interceptor/error_interceptor.dart';
 class TokenManager {
   Token? _currentToken;
 
-  TokenRepository() {
+  TokenManager() {
     _currentToken = CoreStorage.readToken;
   }
 

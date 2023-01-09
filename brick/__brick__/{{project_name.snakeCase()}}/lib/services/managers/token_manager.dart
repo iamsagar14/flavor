@@ -11,7 +11,7 @@ import 'package:{{project_name.snakeCase()}}/services/api/interceptor/error_inte
 class TokenManager {
   Token? _currentToken;
 
-  TokenRepository() {
+  TokenManager() {
     _currentToken = CoreStorage.readToken;
   }
 

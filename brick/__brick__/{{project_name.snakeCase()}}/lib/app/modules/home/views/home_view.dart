@@ -18,8 +18,8 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Center(
         child: Text(
-          '${controller.config.description}',
-          style: TextStyle(fontSize: 16),
+          controller.config.description,
+          style: const TextStyle(fontSize: 16),
         ),
       ),
     );
