@@ -1,13 +1,3 @@
-# Flavors in Flutter
-
-Originally developed by Very Good Ventures 🦄
-
-Flavors for flutter starter project with required modifications by Very Good Ventures Team.
-
-_This fork is not maintained by nor affiliated with "Very Good Ventures"._
-
----
-
 ## Getting Started 🚀
 
 _1. Supports iOS and Android_

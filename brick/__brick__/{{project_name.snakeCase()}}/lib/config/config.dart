@@ -6,6 +6,17 @@ class Config {
     return 'Currently configured in ${currentFlavor.name} flavor.';
   }
 
+  String get applicationName {
+    switch (currentFlavor) {
+      case Flavor.development:
+        return "[DEV] {{project_name.titleCase()}}";
+      case Flavor.staging:
+        return "[STG] {{project_name.titleCase()}}";
+      case Flavor.production:
+        return "{{project_name.titleCase()}}";
+    }
+  }
+
   String get baseUrl {
     switch (currentFlavor) {
       case Flavor.development:

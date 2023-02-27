@@ -10,10 +10,6 @@ _This fork is not maintained by nor affiliated with "Very Good Ventures"._
 
 ## Getting Started 🚀
 
-_1. Supports iOS and Android_
-
-_2. Starter project with GetX architecture_
-
 This project contains a brick generator for generating flavored flutter templates:
 
 To run the generator either use the launch configuration in VSCode or use the following commands:
