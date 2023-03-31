@@ -4,7 +4,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // 🌎 Project imports:
 import 'package:flavor_core/services/api/endpoint.dart';
-import 'package:flavor_core/services/api/interceptor/auth_interceptor.dart';
 import 'package:flavor_core/services/api/interceptor/error_interceptor.dart';
 
 class BaseClient {
@@ -20,7 +19,6 @@ class BaseClient {
     );
     dio.interceptors.addAll(
       [
-        AuthInterceptor(),
         ErrorInterceptor(),
         PrettyDioLogger(
           requestHeader: true,

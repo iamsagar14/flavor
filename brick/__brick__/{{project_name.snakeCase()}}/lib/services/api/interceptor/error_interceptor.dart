@@ -8,11 +8,7 @@ class ErrorInterceptor extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     switch (err.type) {
-      case DioErrorType.connectTimeout:
-      case DioErrorType.sendTimeout:
-      case DioErrorType.receiveTimeout:
-        throw TimeoutException(err.requestOptions);
-      case DioErrorType.response:
+      case DioErrorType.badResponse:
         switch (err.response?.statusCode) {
           case 400:
             throw BadRequestException(err.requestOptions);
@@ -26,9 +22,16 @@ class ErrorInterceptor extends Interceptor {
             throw InternalServerErrorException(err.requestOptions);
         }
         break;
+      case DioErrorType.connectionTimeout:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.connectionError:
+        throw TimeoutException(err.requestOptions);
+      case DioErrorType.badCertificate:
+        throw BadCertificateException(err.requestOptions);
       case DioErrorType.cancel:
-        break;
-      case DioErrorType.other:
+        throw CancelException(err.requestOptions);
+      case DioErrorType.unknown:
         throw NoInternetConnectionException(err.requestOptions);
     }
 

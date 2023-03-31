@@ -72,3 +72,21 @@ class TimeoutException extends DioError {
     return 'The connection has timed out, please try again.';
   }
 }
+
+class BadCertificateException extends DioError {
+  BadCertificateException(RequestOptions r) : super(requestOptions: r);
+
+  @override
+  String toString() {
+    return 'Bad certificate detected.';
+  }
+}
+
+class CancelException extends DioError {
+  CancelException(RequestOptions r) : super(requestOptions: r);
+
+  @override
+  String toString() {
+    return 'Connection cancelled early.';
+  }
+}
