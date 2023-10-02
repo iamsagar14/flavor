@@ -1,4 +1,7 @@
 // 📦 Package imports:
+import 'package:dio/dio.dart';
+import 'package:{{project_name.snakeCase()}}/services/manager/storage_manager.dart';
+import 'package:{{project_name.snakeCase()}}/services/manager/token_manager.dart';
 import 'package:get_it/get_it.dart';
 
 // 🌎 Project imports:
@@ -12,6 +15,18 @@ void initLocator() {
   );
 
   locator.registerLazySingleton(
-    () => BaseClient(),
+    () => BaseClient(config: locator()),
+  );
+
+  locator.registerSingletonAsync<Dio>(
+    () => locator<BaseClient>().createDio(),
+  );
+
+  locator.registerLazySingleton(
+    () => StorageManager(),
+  );
+
+  locator.registerLazySingleton(
+    () => TokenManager(storageManager: locator()),
   );
 }

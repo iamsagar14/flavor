@@ -1,24 +1,32 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
+import 'package:{{project_name.snakeCase()}}/config/config.dart';
+import 'package:{{project_name.snakeCase()}}/services/api/interceptor/auth_interceptor.dart';
+import 'package:{{project_name.snakeCase()}}/services/api/interceptor/error_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // 🌎 Project imports:
-import 'package:{{project_name.snakeCase()}}/services/api/endpoint.dart';
-import 'package:{{project_name.snakeCase()}}/services/api/interceptor/error_interceptor.dart';
 
 class BaseClient {
-  late final Dio _dio = _createDio();
+  final Config _config;
+  BaseClient({
+    required Config config,
+  }) : _config = config;
 
-  Dio get dio => _dio;
-  Dio _createDio() {
+  Future<Dio> createDio() async {
     Dio dio = Dio();
+
     dio.options = BaseOptions(
-      baseUrl: Endpoint.baseUrl,
+      baseUrl: _config.baseUrl,
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 10),
       contentType: 'application/json',
-      responseType: ResponseType.plain,
+      responseType: ResponseType.json,
     );
+
     dio.interceptors.addAll(
       [
+        AuthInterceptor(),
         ErrorInterceptor(),
         PrettyDioLogger(
           requestHeader: true,
@@ -28,7 +36,7 @@ class BaseClient {
           error: true,
           compact: true,
           maxWidth: 90,
-        )
+        ),
       ],
     );
     return dio;

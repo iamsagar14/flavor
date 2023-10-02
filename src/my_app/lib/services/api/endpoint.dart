@@ -6,4 +6,6 @@ class Endpoint {
   Endpoint._();
 
   static final String baseUrl = locator.get<Config>().baseUrl;
+  // TODO: Refresh token url
+  static final String refreshToken = throw UnimplementedError();
 }
