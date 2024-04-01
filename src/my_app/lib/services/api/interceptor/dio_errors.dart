@@ -1,16 +1,15 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
 
-class BadRequestException extends DioError {
+class BadRequestException extends DioException {
   BadRequestException(RequestOptions r) : super(requestOptions: r);
-
   @override
   String toString() {
     return 'Invalid request';
   }
 }
 
-class InternalServerErrorException extends DioError {
+class InternalServerErrorException extends DioException {
   InternalServerErrorException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -19,7 +18,7 @@ class InternalServerErrorException extends DioError {
   }
 }
 
-class ConflictException extends DioError {
+class ConflictException extends DioException {
   ConflictException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -28,7 +27,7 @@ class ConflictException extends DioError {
   }
 }
 
-class UnauthorizedException extends DioError {
+class UnauthorizedException extends DioException {
   UnauthorizedException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -37,7 +36,7 @@ class UnauthorizedException extends DioError {
   }
 }
 
-class ForbiddenException extends DioError {
+class ForbiddenException extends DioException {
   ForbiddenException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -46,7 +45,7 @@ class ForbiddenException extends DioError {
   }
 }
 
-class NotFoundException extends DioError {
+class NotFoundException extends DioException {
   NotFoundException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -55,16 +54,15 @@ class NotFoundException extends DioError {
   }
 }
 
-class NoInternetConnectionException extends DioError {
-  NoInternetConnectionException(RequestOptions r) : super(requestOptions: r);
-
+class OtherException extends DioException {
+  OtherException(RequestOptions r) : super(requestOptions: r);
   @override
   String toString() {
-    return 'No internet connection detected, please try again.';
+    return 'Something went wrong, please try again!!';
   }
 }
 
-class TimeoutException extends DioError {
+class TimeoutException extends DioException {
   TimeoutException(RequestOptions r) : super(requestOptions: r);
 
   @override
@@ -73,20 +71,14 @@ class TimeoutException extends DioError {
   }
 }
 
-class BadCertificateException extends DioError {
-  BadCertificateException(RequestOptions r) : super(requestOptions: r);
+class CustomServerException extends DioException {
+  final String detail;
+
+  CustomServerException(RequestOptions r, this.detail)
+      : super(requestOptions: r);
 
   @override
   String toString() {
-    return 'Bad certificate detected.';
-  }
-}
-
-class CancelException extends DioError {
-  CancelException(RequestOptions r) : super(requestOptions: r);
-
-  @override
-  String toString() {
-    return 'Connection cancelled early.';
+    return detail;
   }
 }
